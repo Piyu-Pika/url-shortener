@@ -35,6 +35,9 @@ class UrlService {
       .skip(skip)
       .limit(limit);
   }
+  async deleteUrl(urlId) {
+    return UrlModel.findByIdAndDelete(urlId);
+  }
 }
 
 module.exports = new UrlService();

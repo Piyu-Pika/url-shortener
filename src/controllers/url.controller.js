@@ -60,6 +60,22 @@ class UrlController {
       res.status(500).json({ error: 'Internal server error' });
     }
   }
+  async deleteUrl(req, res) {
+    try {
+      const { shortId } = req.params;
+      const url = await urlService.getUrlByShortId(shortId);
+
+      if (!url) {
+        return res.status(404).json({ error: 'URL not found' });
+      }
+
+      await urlService.deleteUrl(url._id);
+      res.json({ message: 'URL deleted successfully' });
+    } catch (error) {
+      logger.error('Error in deleteUrl:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  }
 }
 
 module.exports = new UrlController();

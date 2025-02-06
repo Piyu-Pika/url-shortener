@@ -18,5 +18,6 @@ router.post(
 
 router.get('/urls', urlController.getUrls);
 router.get('/:shortId', urlController.redirectToUrl);
+router.delete('/:shortId', urlController.deleteUrl);
 
 module.exports = router;
